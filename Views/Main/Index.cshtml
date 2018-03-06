@@ -1,0 +1,92 @@
+﻿@model MyApplication.Models.Account
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            debugger;
+            webservicemailvalidate("testemail@gmail.com");
+        });
+
+        function webservicemailvalidate(email) {
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: "https://www.flipfares.com/verify-getmax.aspx/WebserviceMailvalidate",
+                data: '{email: "' + email + '" }',
+                async: true,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response)
+                {
+                    alert(response);
+                    debugger;
+                    if (response.d == "valid") {
+                        email_valid = 'valid';
+                    }
+                    else {
+                        email_valid = 'Invalid';
+                    }
+                }
+            });
+
+            function OnSuccess() {
+                debugger;
+                alert('Success');
+            }
+        }
+
+    </script>
+</head>
+<body>
+    Rkplaeh
+
+    @*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserRoles)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserRoles)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>*@
+</body>
+</html>
